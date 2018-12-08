@@ -84,3 +84,80 @@ from nltk.stem import SnowballStemmer
 print(SnowballStemmer.languages)
 ```
 #### Will return the result as "'danish', 'dutch', 'english', 'finnish', 'french', 'german', 'hungarian', 'italian', 'norwegian', 'porter', 'portuguese', 'romanian', 'russian', 'spanish', 'swedish'"
+
+#### You can use the stem function of the SnowballStemmer class to extract non-English words like this.
+```
+from nltk.stem import SnowballStemmer
+  
+french_stemmer = SnowballStemmer('french')
+  
+print(french_stemmer.stem("French word"))
+```
+#### Word variant reduction
+#### A word variant restore is similar to a stem, but the difference is that the result of a variant restore is a real word. Unlike stemming, when you try to extract certain words, it produces similar words:
+```
+from nltk.stem import PorterStemmer
+  
+stemmer = PorterStemmer()
+  
+print(stemmer.stem('increases'))
+```
+#### Will return the result as "increas"
+
+#### Now, if you use NLTK's WordNet to perform a variant restore of the same word, the correct result:
+```
+from nltk.stem import WordNetLemmatizer
+  
+lemmatizer = WordNetLemmatizer()
+  
+print(lemmatizer.lemmatize('increases'))
+
+```
+#### Will return the result as "increase"
+
+#### The result may be a synonym or a different word of the same meaning. Sometimes when you restore a word to a variant, you always get the same word. This is because the default part of the language is a noun. To get a verb, you can specify
+
+```
+from nltk.stem import WordNetLemmatizer
+  
+lemmatizer = WordNetLemmatizer()
+  
+print(lemmatizer.lemmatize('playing', pos="v"))
+```
+#### Will return the result as "play"
+
+#### In fact, this is also a good way to compress text, and finally get the text from the original 50% to 60%. The result can also be a verb (v), a noun (n), an adjective (a), or an adverb (r):
+```
+from nltk.stem import WordNetLemmatizer
+  
+lemmatizer = WordNetLemmatizer()
+print(lemmatizer.lemmatize('playing', pos="v"))
+print(lemmatizer.lemmatize('playing', pos="n"))
+print(lemmatizer.lemmatize('playing', pos="a"))
+print(lemmatizer.lemmatize('playing', pos="r"))
+```
+#### Will return the result as "play,playing,playing,playing"
+
+#### The difference between stems and variants
+```
+from nltk.stem import WordNetLemmatizer
+from nltk.stem import PorterStemmer
+  
+stemmer = PorterStemmer()
+lemmatizer = WordNetLemmatizer()
+print(stemmer.stem('stones'))
+print(stemmer.stem('speaking'))
+print(stemmer.stem('bedroom'))
+print(stemmer.stem('jokes'))
+print(stemmer.stem('lisa'))
+print(stemmer.stem('purple'))
+print('----------------------')
+print(lemmatizer.lemmatize('stones'))
+print(lemmatizer.lemmatize('speaking'))
+print(lemmatizer.lemmatize('bedroom'))
+print(lemmatizer.lemmatize('jokes'))
+print(lemmatizer.lemmatize('lisa'))
+print(lemmatizer.lemmatize('purple'))
+```
+#### The result will be: stone, speak, bedroom, joke, lisa, purpl.
+#### The result will be:stone, speaking, bedroom, joke, lisa, purple.
