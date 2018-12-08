@@ -51,3 +51,27 @@ for syn in wordnet.synsets('Computer'):
 print(synonyms)
 ```
 #### Will return the result as " ['computer', 'computing_machine', 'computing_device', 'data_processor', 'electronic_computer', 'information_processing_system', 'calculator', 'reckoner', 'figurer', 'estimator', 'computer']"
+
+#### Antonym processing
+```
+from nltk.corpus import wordnet
+  
+antonyms = []
+for syn in wordnet.synsets("small"):
+    for l in syn.lemmas():
+        if l.antonyms():
+            antonyms.append(l.antonyms()[0].name())
+print(antonyms)
+```
+#### Will return the result as " ['large', 'big', 'big']"
+
+#### Stem extraction
+#### In language morphology and information retrieval, stemming is the process of removing the affixes to get the roots. For example, the working stem is work. Search engines use this technique when indexing pages, so many people write different versions of the same word. There are many algorithms to avoid this, the most common being the Boolean stem algorithm. NLTK has a class called PorterStemmer, which is the implementation of this algorithm:
+```
+from nltk.stem import PorterStemmer
+  
+stemmer = PorterStemmer()
+print(stemmer.stem('working'))
+print(stemmer.stem('worked'))
+```
+#### Will return the result as "work, work"
