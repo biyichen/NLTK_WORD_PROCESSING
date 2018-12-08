@@ -75,3 +75,12 @@ print(stemmer.stem('working'))
 print(stemmer.stem('worked'))
 ```
 #### Will return the result as "work, work"
+
+#### Non-English stem extraction
+#### In addition to English, SnowballStemmer also supports 13 languages. Supported languages:
+```
+from nltk.stem import SnowballStemmer
+  
+print(SnowballStemmer.languages)
+```
+#### Will return the result as "'danish', 'dutch', 'english', 'finnish', 'french', 'german', 'hungarian', 'italian', 'norwegian', 'porter', 'portuguese', 'romanian', 'russian', 'spanish', 'swedish'"
