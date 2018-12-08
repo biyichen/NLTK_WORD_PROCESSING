@@ -161,3 +161,9 @@ print(lemmatizer.lemmatize('purple'))
 ```
 #### The result will be: stone, speak, bedroom, joke, lisa, purpl.
 #### The result will be:stone, speaking, bedroom, joke, lisa, purple.
+
+#### Stem extraction does not consider context, which is why stemming is faster and less accurate than variant reduction.
+
+#### Personally think that variant reduction is better than stem extraction. A word variant restores a real word, even if it is not the same word, synonymous, but at least it is a real word.
+
+#### If you only care about speed, don't care about accuracy, then you can choose stemming
